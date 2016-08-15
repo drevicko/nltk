@@ -311,6 +311,12 @@ class AnnotationTask(object):
         """Krippendorff 1980
 
         """
+        # Check for degenerate cases:
+        if len(self.K) == 1:
+            return 1
+        elif len(self.K) == 0:
+            return np.nan
+        
         De = 0.0
 
         label_freqs = FreqDist(x['labels'] for x in self.data)
